@@ -1,5 +1,3 @@
-// /app/records/edit/page.jsx
-
 "use client";
 
 import { Suspense, useEffect, useState } from "react";
@@ -17,6 +15,7 @@ const EditContent = () => {
 
   const getRecord = async (id) => {
     const data = await getRecordById(id);
+    console.log('Record primit:', JSON.stringify(data));
     if (data) {
       setEntry(data);
     }
@@ -27,6 +26,7 @@ const EditContent = () => {
     const response = await updateRecord(data);
     if (response) {
       router.push("/");
+      router.refresh();
     } else {
       alert("Failed to update record");
     }

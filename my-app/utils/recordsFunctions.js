@@ -1,15 +1,24 @@
 // /utils/recordsFunctions.js
 
+const getId = (record) => {
+  if (!record._id) return null;
+  if (typeof record._id === 'string') return record._id;
+  if (record._id.$oid) return record._id.$oid;
+  return record._id.toString();
+};
+
 export const getRecords = async () => {
   const response = await fetch('/api/records');
   if (!response.ok) return null;
-  return response.json();
+  const data = await response.json();
+  return data.map(record => ({ ...record, _id: getId(record) }));
 };
 
 export const getRecordById = async (id) => {
   const response = await fetch(`/api/records/${id}`);
   if (!response.ok) return null;
-  return response.json();
+  const record = await response.json();
+  return { ...record, _id: getId(record) };
 };
 
 export const createRecord = async (data) => {
@@ -23,7 +32,8 @@ export const createRecord = async (data) => {
 };
 
 export const updateRecord = async (data) => {
-  const { _id, ...body } = data;
+  const _id = getId(data);
+  const { _id: _, ...body } = data;
   const response = await fetch(`/api/records/${_id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },

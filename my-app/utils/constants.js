@@ -1,7 +1,6 @@
-// /utils/constants.js
-
 export const recordDefaultValues = {
-    _id: "",
-    title: "",
+    _id: null,
+    name: "",
+    type: "",
     description: ""
 };

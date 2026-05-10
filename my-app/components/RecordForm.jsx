@@ -1,5 +1,3 @@
-// /components/RecordForm.jsx
-
 'use client';
 
 import { useState } from 'react';
@@ -16,6 +14,8 @@ const RecordForm = ({ data, onSubmit }) => {
     e.preventDefault();
     onSubmit(formData);
   };
+
+  const isEdit = formData._id && formData._id !== '';
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -66,7 +66,7 @@ const RecordForm = ({ data, onSubmit }) => {
         type="submit"
         className="bg-blue-600 text-white rounded px-4 py-2 hover:bg-blue-700 transition-colors"
       >
-        {formData._id ? 'Update' : 'Create'}
+        {isEdit ? 'Update' : 'Create'}
       </button>
     </form>
   );
