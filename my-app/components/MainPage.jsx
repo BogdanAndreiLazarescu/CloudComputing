@@ -41,6 +41,12 @@ const MainPage = () => {
             Contact
           </Link>
           <Link
+            href="/chat"
+            className="bg-purple-600 text-white rounded px-4 py-2 hover:bg-purple-700 transition-colors"
+          >
+            Chat
+          </Link>
+          <Link
             href="/records/create"
             className="bg-blue-600 text-white rounded px-4 py-2 hover:bg-blue-700 transition-colors"
           >
